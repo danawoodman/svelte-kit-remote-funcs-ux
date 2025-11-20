@@ -5,6 +5,10 @@
 
 	// NOTE: using the below does allow client-first loading of data
 	// vs blocking the page until the data is loaded:
+	// let data = $state<ReturnType<typeof getData>>();
+	// onMount(() => {
+	// 	data = getData();
+	// });
 
 	let loading = $derived(!data || data?.loading);
 </script>
