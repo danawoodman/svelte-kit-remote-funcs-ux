@@ -13,7 +13,6 @@
 
 <section class="flex flex-col gap-4">
 	<aside class="flex items-center gap-4">
-		<!-- NOTE: cannot show loading indicator because no way to access loading state... -->
 		<a href="/" class="btn btn-square btn-neutral">←</a>
 		<button class="btn btn-primary" disabled={data?.loading} onclick={() => data?.refresh()}>
 			{#if data?.loading}
