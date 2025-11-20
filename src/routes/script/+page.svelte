@@ -5,17 +5,15 @@
 
 	// NOTE: using the below does allow client-first loading of data
 	// vs blocking the page until the data is loaded:
-	// let data = $state<ReturnType<typeof getData>>();
-	// onMount(async () => {
-	// 	data = getData();
-	// });
+
+	let loading = $derived(!data || data?.loading);
 </script>
 
 <section class="flex flex-col gap-4">
 	<aside class="flex items-center gap-4">
 		<a href="/" class="btn btn-square btn-neutral">←</a>
-		<button class="btn btn-primary" disabled={data?.loading} onclick={() => data?.refresh()}>
-			{#if data?.loading}
+		<button class="btn btn-primary" disabled={loading} onclick={() => data?.refresh()}>
+			{#if loading}
 				Loading...
 			{:else}
 				Refresh
@@ -25,7 +23,7 @@
 
 	{#if data?.error}
 		<p class="text-error">{data.error.message}</p>
-	{:else if data?.loading}
+	{:else if loading}
 		<p class="text-neutral-content">Loading...</p>
 	{:else}
 		{#each data?.current as { id, title, slug, content } (id)}
